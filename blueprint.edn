@@ -1,0 +1,11 @@
+{:itonami.blueprint/id "cloud-itonami-1910"
+ :itonami.blueprint/name "Coke Oven Products Manufacturing Operations Coordination"
+ :itonami.blueprint/isic-rev5 "1910"
+ :itonami.blueprint/domain :manufacturing/coke-oven-products
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:industrial-safety :environmental-compliance :occupational-health :critical-infrastructure]
+ :itonami.blueprint/governor :coke-operations-governor
+ :itonami.blueprint/robotics true
+ :itonami.blueprint/required-technologies [:robotics :identity :forms :dmn :bpmn :audit-ledger :telemetry :emissions-tracking]
+ :itonami.blueprint/optional-technologies [:pressure-monitoring :temperature-monitoring :byproduct-quality-assurance]
+ :itonami.blueprint/status :implemented}

@@ -1,0 +1,24 @@
+# Clojure
+target/
+.cpcache/
+*.jar
+pom.xml
+pom.xml.asc
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test coverage
+coverage/
+.coverage
+
+# Runtime
+.nrepl-port
+.lein-env
+.env
+.env.local
