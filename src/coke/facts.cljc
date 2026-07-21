@@ -3,10 +3,11 @@
   Every jurisdiction in this catalog is backed by an official spec-basis.
   NEVER invent requirements without an official citation.
 
-  South Korea (:KOR) is scoped more narrowly than JPN/USA/GBR -- only
-  emissions-monitoring and worker-safety are verified and included;
-  raw-material-verification and byproduct-handling are honestly absent
-  rather than guessed by analogy to the other jurisdictions.
+  South Korea (:KOR) and Germany (:DEU) are scoped more narrowly than
+  JPN/USA/GBR -- only emissions-monitoring and worker-safety are verified
+  and included for each; raw-material-verification and byproduct-handling
+  are honestly absent rather than guessed by analogy to the other
+  jurisdictions.
 
   This is deliberately a starting catalog (honest coverage reporting) to
   prove the governor contract end-to-end, not a claim of global coverage.
@@ -95,7 +96,34 @@
      :worker-safety {:description "Protective measures against hazardous/dangerous power-operated machinery and apparatus, plus a mandatory workplace risk assessment covering raw materials, gas, steam, and dust -- directly on point for coke-oven operations"
                     :required true
                     :spec-basis "Occupational Safety and Health Act (산업안전보건법) Art. 80 (protective measures against hazardous/dangerous machinery and apparatus) + Art. 36 (mandatory risk assessment of hazards from buildings/machinery/equipment/raw materials/gas/steam/dust) -- both articles' actual text independently confirmed via direct PDF download + pdftotext extraction of the official ILO NATLEX English translation"
-                    :evidence [:risk-assessment-record :hazard-protective-measures-cert]}}}})
+                    :evidence [:risk-assessment-record :hazard-protective-measures-cert]}}}
+
+   ;; Germany (DEU) -- WebFetch-verified 2026-07-22 directly against
+   ;; gesetze-im-internet.de (the Bundesministerium der Justiz's own
+   ;; official law-text portal). Emissions citation is HIGH confidence:
+   ;; Anhang 1 zur 4. BImSchV (Ordinance on installations requiring a
+   ;; permit) Item 1.11 explicitly names "Kokereien" (coking plants) among
+   ;; the "Anlagen zur Trockendestillation" requiring a full permit
+   ;; procedure with public participation -- read directly, not inferred
+   ;; by analogy to a generic industrial-emissions law. Worker-safety
+   ;; citation is also HIGH confidence: the Arbeitsschutzgesetz (ArbSchG)
+   ;; itself, § 3 (general employer duties) and § 5 (mandatory assessment
+   ;; of working conditions / Gefährdungsbeurteilung), read directly --
+   ;; the same risk-assessment shape JPN's and KOR's entries already use.
+   ;; No raw-material-verification or byproduct-handling entry is made for
+   ;; DEU -- this iteration did not find/verify a citation for either, so
+   ;; those categories are honestly absent rather than fabricated.
+   :DEU
+   {:name "Germany"
+    :requirements
+    {:emissions-monitoring {:description "Permit required before constructing or operating a coking plant, under the ordinance listing installations requiring a permit"
+                           :required true
+                           :spec-basis "Vierte Verordnung zur Durchführung des Bundes-Immissionsschutzgesetzes (4. BImSchV), Anhang 1, Nr. 1.11 (Anlagen zur Trockendestillation, insbesondere Kokereien) -- full permit procedure with public participation (Verfahrensart G), read directly at gesetze-im-internet.de"
+                           :evidence [:installation-permit :ta-luft-compliance-record]}
+     :worker-safety {:description "Mandatory assessment of working conditions (Gefährdungsbeurteilung) and general employer duty to ensure occupational safety and health"
+                    :required true
+                    :spec-basis "Arbeitsschutzgesetz (ArbSchG) § 3 (Grundpflichten des Arbeitgebers) + § 5 (Beurteilung der Arbeitsbedingungen) -- read directly at gesetze-im-internet.de"
+                    :evidence [:risk-assessment-record :safety-plan]}}}})
 
 ;; ----------------------------- coverage reporting (honest) -----------------------------
 
