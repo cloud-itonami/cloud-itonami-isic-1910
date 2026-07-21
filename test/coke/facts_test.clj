@@ -7,7 +7,20 @@
   (is (seq facts/catalog) "Catalog should not be empty")
   (is (contains? facts/catalog :JPN) "Should have Japan entry")
   (is (contains? facts/catalog :USA) "Should have USA entry")
-  (is (contains? facts/catalog :GBR) "Should have UK entry"))
+  (is (contains? facts/catalog :GBR) "Should have UK entry")
+  (is (contains? facts/catalog :KOR) "Should have South Korea entry"))
+
+(deftest kor-requirements
+  "South Korea has a real but honestly narrower requirement set than
+  JPN/USA/GBR -- emissions-monitoring and worker-safety only."
+  (let [reqs (facts/requirement-citations :KOR)]
+    (is (seq reqs) "South Korea should have requirements")
+    (is (contains? reqs :emissions-monitoring) "Should require emissions monitoring")
+    (is (contains? reqs :worker-safety) "Should require worker safety")
+    (is (not (contains? reqs :raw-material-verification))
+      "Should NOT claim a raw-material-verification requirement that was not verified")
+    (is (every? :spec-basis (vals reqs))
+      "Every requirement should have an official spec-basis citation")))
 
 (deftest jpn-requirements
   "Japan has required evidence checklist."
@@ -43,5 +56,5 @@
     (is (contains? cov :implemented) "Should report implemented count")
     (is (contains? cov :worldwide-jurisdictions) "Should report worldwide jurisdictions")
     (is (contains? cov :coverage-pct) "Should report coverage percentage")
-    (is (= (:implemented cov) 3) "Should have 3 jurisdictions")
+    (is (= (:implemented cov) 4) "Should have 4 jurisdictions")
     (is (> (:coverage-pct cov) 0) "Coverage should be > 0%")))

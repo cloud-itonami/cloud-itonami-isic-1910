@@ -3,6 +3,11 @@
   Every jurisdiction in this catalog is backed by an official spec-basis.
   NEVER invent requirements without an official citation.
 
+  South Korea (:KOR) is scoped more narrowly than JPN/USA/GBR -- only
+  emissions-monitoring and worker-safety are verified and included;
+  raw-material-verification and byproduct-handling are honestly absent
+  rather than guessed by analogy to the other jurisdictions.
+
   This is deliberately a starting catalog (honest coverage reporting) to
   prove the governor contract end-to-end, not a claim of global coverage.
   Adding a jurisdiction is additive: one map entry citing a real official
@@ -64,7 +69,33 @@
      :worker-safety {:description "Health and Safety at Work Act compliance"
                     :required true
                     :spec-basis "Health and Safety at Work etc. Act 1974 (HSWA)"
-                    :evidence [:risk-assessment :safety-instruction]}}}})
+                    :evidence [:risk-assessment :safety-instruction]}}}
+
+   ;; South Korea (KOR) -- WebFetch/curl-verified 2026-07-21. Emissions
+   ;; citation confirmed via multiple independent secondary sources after
+   ;; the primary law.go.kr/elaw.klri.re.kr viewer proved to be a JS SPA this
+   ;; iteration's tools could not render (same class of limitation hit for
+   ;; Azerbaijan's e-qanun.az and Albania's qbz.gov.al landing pages in this
+   ;; loop's other iterations). Worker-safety citation is HIGHER confidence:
+   ;; the official ILO NATLEX-hosted English-translation PDF of Korea's
+   ;; Occupational Safety and Health Act was downloaded directly via curl
+   ;; (WebFetch itself got HTTP 403 on this specific PDF; curl with a
+   ;; standard user-agent succeeded, 200, real 10-page PDF) and its actual
+   ;; article text extracted with pdftotext, not taken from a summary. No
+   ;; raw-material-verification or byproduct-handling entry is made for KOR
+   ;; -- this iteration did not find/verify a citation for either, so
+   ;; those categories are honestly absent rather than fabricated.
+   :KOR
+   {:name "South Korea"
+    :requirements
+    {:emissions-monitoring {:description "Permit or reporting requirement before installing an emission facility (a coke-oven battery is a stationary emission source)"
+                           :required true
+                           :spec-basis "Clean Air Conservation Act (대기환경보전법) Art. 23 (permits/reporting on installation of emission facilities) -- confirmed via multiple independent secondary sources (the Korea Legislation Research Institute's own English-translation site did not render directly for this iteration's tools)"
+                           :evidence [:emission-facility-permit :installation-report]}
+     :worker-safety {:description "Protective measures against hazardous/dangerous power-operated machinery and apparatus, plus a mandatory workplace risk assessment covering raw materials, gas, steam, and dust -- directly on point for coke-oven operations"
+                    :required true
+                    :spec-basis "Occupational Safety and Health Act (산업안전보건법) Art. 80 (protective measures against hazardous/dangerous machinery and apparatus) + Art. 36 (mandatory risk assessment of hazards from buildings/machinery/equipment/raw materials/gas/steam/dust) -- both articles' actual text independently confirmed via direct PDF download + pdftotext extraction of the official ILO NATLEX English translation"
+                    :evidence [:risk-assessment-record :hazard-protective-measures-cert]}}}})
 
 ;; ----------------------------- coverage reporting (honest) -----------------------------
 
