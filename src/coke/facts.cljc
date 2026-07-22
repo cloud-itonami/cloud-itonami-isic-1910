@@ -3,11 +3,11 @@
   Every jurisdiction in this catalog is backed by an official spec-basis.
   NEVER invent requirements without an official citation.
 
-  South Korea (:KOR) and Germany (:DEU) are scoped more narrowly than
-  JPN/USA/GBR -- only emissions-monitoring and worker-safety are verified
-  and included for each; raw-material-verification and byproduct-handling
-  are honestly absent rather than guessed by analogy to the other
-  jurisdictions.
+  South Korea (:KOR), Germany (:DEU), and Poland (:POL) are scoped more
+  narrowly than JPN/USA/GBR -- only emissions-monitoring and worker-safety
+  are verified and included for each; raw-material-verification and
+  byproduct-handling are honestly absent rather than guessed by analogy to
+  the other jurisdictions.
 
   This is deliberately a starting catalog (honest coverage reporting) to
   prove the governor contract end-to-end, not a claim of global coverage.
@@ -123,6 +123,50 @@
      :worker-safety {:description "Mandatory assessment of working conditions (Gefährdungsbeurteilung) and general employer duty to ensure occupational safety and health"
                     :required true
                     :spec-basis "Arbeitsschutzgesetz (ArbSchG) § 3 (Grundpflichten des Arbeitgebers) + § 5 (Beurteilung der Arbeitsbedingungen) -- read directly at gesetze-im-internet.de"
+                    :evidence [:risk-assessment-record :safety-plan]}}}
+
+   ;; Poland (POL) -- WebFetch/curl-verified 2026-07-22 directly against
+   ;; dziennikustaw.gov.pl (the official Journal of Laws of the Republic of
+   ;; Poland / Dziennik Ustaw, published by the Rządowe Centrum Legislacji --
+   ;; the same official-gazette class of primary source as Germany's
+   ;; gesetze-im-internet.de). isap.sejm.gov.pl -- the other official portal,
+   ;; which also mirrors these texts -- was tried first but its document
+   ;; viewer sits behind an Imperva bot-detection interstitial this
+   ;; iteration's tools could not pass (same class of limitation as
+   ;; law.go.kr hit for KOR); dziennikustaw.gov.pl's direct PDF URLs served
+   ;; the real gazette PDFs with no such block. Emissions citation is HIGH
+   ;; confidence: downloaded the actual regulation PDF (Dz.U. 2014 poz. 1169,
+   ;; "Rozporządzenie Ministra Środowiska z dnia 27 sierpnia 2014 r. w
+   ;; sprawie rodzajów instalacji mogących powodować znaczne zanieczyszczenie
+   ;; poszczególnych elementów przyrodniczych albo środowiska jako całości")
+   ;; and read its Annex directly with pdftotext: Section 1 ("Instalacje do
+   ;; wytwarzania energii i paliw"), item 3, reads verbatim "do produkcji
+   ;; koksu" (coke production) -- the same Annex I item 1.3 category used by
+   ;; the EU Industrial Emissions Directive 2010/75/EU, which this
+   ;; regulation's own footnote states it implements. Installations on this
+   ;; list require an integrated permit under Prawo ochrony środowiska
+   ;; (Environmental Protection Law) Art. 201, the statute whose Art. 201
+   ;; ust. 2 delegation this regulation's own preamble cites as its legal
+   ;; basis. Worker-safety citation is also HIGH confidence: downloaded the
+   ;; Kodeks pracy (Labour Code) consolidated-text gazette PDF (Dz.U. 2023
+   ;; poz. 1465) and read Art. 207 § 1-2 (general employer duty to ensure
+   ;; safe and hygienic working conditions) and Art. 226 (mandatory
+   ;; assessment and documentation of occupational risk, plus a duty to
+   ;; inform workers of that risk) directly with pdftotext -- the same
+   ;; risk-assessment shape JPN's/KOR's/DEU's entries already use. No
+   ;; raw-material-verification or byproduct-handling entry is made for POL
+   ;; -- this iteration did not find/verify a citation for either, so those
+   ;; categories are honestly absent rather than fabricated.
+   :POL
+   {:name "Poland"
+    :requirements
+    {:emissions-monitoring {:description "Integrated permit required before operating an installation of a type classified as capable of significant pollution, including coke-production installations"
+                           :required true
+                           :spec-basis "Rozporządzenie Ministra Środowiska z dnia 27 sierpnia 2014 r. w sprawie rodzajów instalacji mogących powodować znaczne zanieczyszczenie poszczególnych elementów przyrodniczych albo środowiska jako całości (Dz.U. 2014 poz. 1169), Załącznik, ust. 1 pkt 3 (\"do produkcji koksu\") -- implements EU Industrial Emissions Directive 2010/75/EU Annex I 1.3; installations on the list require an integrated permit (pozwolenie zintegrowane) under Prawo ochrony środowiska Art. 201 -- read directly at dziennikustaw.gov.pl"
+                           :evidence [:integrated-permit :installation-classification-record]}
+     :worker-safety {:description "General employer duty to ensure safe and hygienic working conditions, plus mandatory assessment and documentation of occupational risk"
+                    :required true
+                    :spec-basis "Kodeks pracy (Labour Code), Art. 207 § 1-2 (podstawowe obowiązki pracodawcy w zakresie bezpieczeństwa i higieny pracy) + Art. 226 (ocena i dokumentowanie ryzyka zawodowego oraz informowanie pracowników) -- consolidated text Dz.U. 2023 poz. 1465, read directly at dziennikustaw.gov.pl"
                     :evidence [:risk-assessment-record :safety-plan]}}}})
 
 ;; ----------------------------- coverage reporting (honest) -----------------------------
