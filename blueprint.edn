@@ -8,4 +8,5 @@
  :itonami.blueprint/robotics true
  :itonami.blueprint/required-technologies [:robotics :identity :forms :dmn :bpmn :audit-ledger :telemetry :emissions-tracking]
  :itonami.blueprint/optional-technologies [:pressure-monitoring :temperature-monitoring :byproduct-quality-assurance]
- :itonami.blueprint/status :implemented}
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/maturity :blueprint}
