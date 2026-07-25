@@ -5,8 +5,7 @@
             [coke.governor :as governor]
             [coke.registry :as registry]))
 
-(deftest spec-basis-hard-gate
-  "Spec-basis is a HARD gate: never allow proposals without official citations."
+(deftest ^{:doc "Spec-basis is a HARD gate: never allow proposals without official citations."} spec-basis-hard-gate
   (let [st (store/mem-store)
         proposal {:op :actuation/schedule-production-run
                   :subject "run-001"
@@ -19,9 +18,8 @@
       (is (seq (:hard-violations eval)) "Should have hard violations")
       (is (some #(= (:rule %) :no-spec-basis) (:hard-violations eval))))))
 
-(deftest process-control-block
-  "HARD BLOCK: Proposals mentioning furnace control, charging, or process
-  parameters are immediately rejected. Those remain engineer exclusive authority."
+(deftest ^{:doc "HARD BLOCK: Proposals mentioning furnace control, charging, or process
+  parameters are immediately rejected. Those remain engineer exclusive authority."} process-control-block
   (let [st (store/mem-store)
         proposal {:op :actuation/schedule-production-run
                   :subject "run-001"
@@ -35,9 +33,8 @@
       (is (some #(= (:rule %) :process-control-forbidden) (:hard-violations eval))
         "Should have process-control-forbidden violation"))))
 
-(deftest emissions-threshold-exceedance-escalation
-  "Emissions reports with threshold exceedances ALWAYS escalate to human.
-  Never silently log a threshold exceedance."
+(deftest ^{:doc "Emissions reports with threshold exceedances ALWAYS escalate to human.
+  Never silently log a threshold exceedance."} emissions-threshold-exceedance-escalation
   (let [st (store/mem-store)
         proposal {:op :actuation/log-emissions-report
                   :subject "report-001"
@@ -52,9 +49,8 @@
       (is (some #(= (:rule %) :emissions-threshold-exceedance) (:hard-violations eval))
         "Should have emissions-threshold-exceedance violation"))))
 
-(deftest actuation-requires-escalation
-  "Both production scheduling and emissions reporting require human sign-off,
-  even when all other checks are clean."
+(deftest ^{:doc "Both production scheduling and emissions reporting require human sign-off,
+  even when all other checks are clean."} actuation-requires-escalation
   (let [st (store/mem-store)
         adv (advisor/mock-advisor)
         prod-proposal (advisor/production-proposal adv "run-001")]
@@ -63,8 +59,7 @@
       (is (some #(= (:rule %) :escalate) (:soft-violations eval))
         "Should escalate high-stakes actuation"))))
 
-(deftest supplier-not-verified-blocks-intake
-  "Raw material intake from unverified supplier is blocked."
+(deftest ^{:doc "Raw material intake from unverified supplier is blocked."} supplier-not-verified-blocks-intake
   (let [st (store/mem-store)
         proposal (registry/intake-draft "supplier-unknown"
                    ["Mining Safety Regulation §24"]
@@ -76,8 +71,7 @@
       (is (some #(= (:rule %) :supplier-not-verified) (:hard-violations eval))
         "Should block unverified supplier"))))
 
-(deftest material-not-verified-blocks-production
-  "Production-run scheduling with unverified coal batch is blocked."
+(deftest ^{:doc "Production-run scheduling with unverified coal batch is blocked."} material-not-verified-blocks-production
   (let [st (store/mem-store)
         ;; Create a production run with an unverified coal batch
         _ (swap! (-> st :data) assoc-in [:production-runs "run-002" :coal-batch] "coal-unknown")
@@ -91,8 +85,7 @@
       (is (some #(= (:rule %) :material-not-verified) (:hard-violations eval))
         "Should block unverified material"))))
 
-(deftest low-confidence-escalates
-  "Low confidence proposals escalate to human, even if otherwise clean."
+(deftest ^{:doc "Low confidence proposals escalate to human, even if otherwise clean."} low-confidence-escalates
   (let [st (store/mem-store)
         proposal {:op :actuation/log-emissions-report
                   :subject "report-001"
@@ -107,9 +100,8 @@
       (is (some #(= (:rule %) :escalate) (:soft-violations eval))
         "Should escalate low-confidence"))))
 
-(deftest clean-proposal
-  "A proposal with all evidence, valid spec-basis, high confidence,
-  and no high-stakes actuation or process-control is clean."
+(deftest ^{:doc "A proposal with all evidence, valid spec-basis, high confidence,
+  and no high-stakes actuation or process-control is clean."} clean-proposal
   (let [st (store/mem-store)
         proposal {:op :proposal/coordinate-byproduct-shipment
                   :subject "shipment-001"

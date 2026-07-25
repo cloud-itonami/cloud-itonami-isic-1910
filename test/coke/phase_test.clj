@@ -2,27 +2,23 @@
   (:require [clojure.test :refer [deftest is]]
             [coke.phase :as phase]))
 
-(deftest phase-table-structure
-  "Phase table defines graph topology."
+(deftest ^{:doc "Phase table defines graph topology."} phase-table-structure
   (is (map? phase/phase-table) "Phase table should be a map")
   (is (contains? phase/phase-table :start) "Should have start node")
   (is (contains? phase/phase-table :nodes) "Should have nodes")
   (is (contains? phase/phase-table :edges) "Should have edges"))
 
-(deftest starting-node
-  "Can retrieve entry point."
+(deftest ^{:doc "Can retrieve entry point."} starting-node
   (is (= (phase/starting-node) :advisor)
     "Starting node should be :advisor"))
 
-(deftest node-constants
-  "Node constants are defined."
+(deftest ^{:doc "Node constants are defined."} node-constants
   (is (= phase/ADVISOR-NODE :advisor))
   (is (= phase/GOVERNOR-NODE :governor))
   (is (= phase/HOLD-NODE :hold))
   (is (= phase/COMPLETE-NODE :complete)))
 
-(deftest terminal-node-classification
-  "Can identify terminal nodes."
+(deftest ^{:doc "Can identify terminal nodes."} terminal-node-classification
   (is (phase/is-terminal? :hold) "HOLD should be terminal")
   (is (phase/is-terminal? :complete) "COMPLETE should be terminal")
   (is (not (phase/is-terminal? :advisor)) "ADVISOR should not be terminal")
