@@ -15,8 +15,8 @@ Thank you for considering contributing to this open-source coke-oven operations 
 1. Fork this repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
 3. Make your changes
-4. Run tests: `clojure -M:test`
-5. Run linter: `clojure -M:lint`
+4. Run tests: `kbb -M:test`
+5. Run linter: `kbb -M:lint`
 6. Commit with a clear message
 7. Push and open a pull request
 
@@ -25,7 +25,7 @@ Thank you for considering contributing to this open-source coke-oven operations 
 1. Add entry to `facts.cljc` catalog with **official spec-basis citations**
 2. Add tests in `test/coke/facts_test.cljk`
 3. Update `docs/operator-guide.md` with jurisdiction coverage
-4. Run full test suite: `clojure -M:test && clojure -M:lint`
+4. Run full test suite: `kbb -M:test && kbb -M:lint`
 
 **IMPORTANT:** Never invent jurisdiction requirements. Every citation must link to an official source (law, regulation, standard).
 
@@ -41,12 +41,12 @@ Thank you for considering contributing to this open-source coke-oven operations 
 
 - All new code must have tests
 - Tests use `clojure.test` framework
-- Run: `clojure -M:test`
+- Run: `kbb -M:test`
 - Aim for 100% coverage of governor contract
 
 ### Linting
 
-Run `clojure -M:lint` before submitting. clj-kondo will catch common errors.
+Run `kbb -M:lint` before submitting. clj-kondo will catch common errors.
 
 ## Code of Conduct
 

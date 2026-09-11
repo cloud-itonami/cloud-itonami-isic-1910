@@ -1,6 +1,6 @@
 (ns coke.sim
   "Simulation harness for Coke Operations Coordinator actor.
-  Run with: clojure -M:dev:run"
+  Run with: kbb -M:dev:run"
   (:require [coke.advisor :as advisor]
             [coke.governor :as governor]
             [coke.store :as store]))
