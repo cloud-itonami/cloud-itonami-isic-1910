@@ -11,7 +11,7 @@
 ### Running Tests
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 Expected output: All tests green, zero failures.
@@ -19,7 +19,7 @@ Expected output: All tests green, zero failures.
 ### Running the Simulation
 
 ```bash
-clojure -M:dev:run
+kbb -M:dev:run
 ```
 
 Output: Demo scenarios showing advisor proposals and governor evaluations.
@@ -150,7 +150,7 @@ Edit `src/coke/facts.cljk`:
 Run tests to verify:
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 ### Customizing Confidence Floor

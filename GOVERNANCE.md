@@ -6,8 +6,8 @@ This is a community-driven open-source project. Major decisions are made transpa
 
 ### Pull Request Review
 
-- Every pull request must pass tests (`clojure -M:test`)
-- Every pull request must pass linting (`clojure -M:lint`)
+- Every pull request must pass tests (`kbb -M:test`)
+- Every pull request must pass linting (`kbb -M:lint`)
 - At least one maintainer review required before merge
 - New jurisdictions require verification of official spec-basis citations
 
