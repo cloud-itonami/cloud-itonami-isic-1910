@@ -134,7 +134,7 @@ No production can schedule if the coal supplier is not registered or the specifi
 
 ### Adding a New Requirement
 
-Edit `src/coke/facts.cljc`:
+Edit `src/coke/facts.cljk`:
 
 ```clojure
 :JPN
@@ -155,7 +155,7 @@ clojure -M:test
 
 ### Customizing Confidence Floor
 
-Edit `src/coke/governor.cljc`:
+Edit `src/coke/governor.cljk`:
 
 ```clojure
 (def confidence-floor 0.75)  ;; Raise from 0.6 to 0.75 for stricter gating
@@ -165,7 +165,7 @@ Re-run tests and simulation.
 
 ### Integrating Real Coal-Supply Vendor
 
-Edit `src/coke/store.cljc` to fetch supplier data from your vendor's API instead of hardcoded reference data.
+Edit `src/coke/store.cljk` to fetch supplier data from your vendor's API instead of hardcoded reference data.
 
 ## Troubleshooting
 

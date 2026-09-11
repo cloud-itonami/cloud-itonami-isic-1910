@@ -35,7 +35,7 @@ The actor is forbidden from:
 
 Each jurisdiction (Japan, USA, UK, etc.) has its own coal-supply and emissions requirements, all backed by official citations. The catalog is deliberately small (3 jurisdictions) to honestly represent coverage: we claim only what we verify with official spec-basis.
 
-**File:** `src/coke/facts.cljc`
+**File:** `src/coke/facts.cljk`
 
 ### 3. **Governor Contract with Hard and Soft Gates**
 
@@ -50,7 +50,7 @@ Each jurisdiction (Japan, USA, UK, etc.) has its own coal-supply and emissions r
 - Low confidence (< 0.6)
 - High-stakes actuation (production-run scheduling, emissions reporting)
 
-**File:** `src/coke/governor.cljc`
+**File:** `src/coke/governor.cljk`
 
 ### 4. **Emissions Threshold Exceedance: Always Escalate**
 

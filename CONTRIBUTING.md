@@ -23,7 +23,7 @@ Thank you for considering contributing to this open-source coke-oven operations 
 ### Adding a Jurisdiction
 
 1. Add entry to `facts.cljc` catalog with **official spec-basis citations**
-2. Add tests in `test/coke/facts_test.clj`
+2. Add tests in `test/coke/facts_test.cljk`
 3. Update `docs/operator-guide.md` with jurisdiction coverage
 4. Run full test suite: `clojure -M:test && clojure -M:lint`
 
