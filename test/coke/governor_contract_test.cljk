@@ -1,5 +1,5 @@
 (ns coke.governor-contract-test
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [coke.store :as store]
             [coke.advisor :as advisor]
             [coke.governor :as governor]

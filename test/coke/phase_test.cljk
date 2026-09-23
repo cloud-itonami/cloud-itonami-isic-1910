@@ -1,5 +1,5 @@
 (ns coke.phase-test
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [coke.phase :as phase]))
 
 (deftest ^{:doc "Phase table defines graph topology."} phase-table-structure
