@@ -1,0 +1,44 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README: a coke-oven operations coordinator (ISIC 1910) whose robot actions
+;; are gated (raw material intake verification, byproduct coordination);
+;; furnaces and the coking process stay with licensed plant engineers. So the
+;; physical quantities measured here are the ones the actor reasons about:
+;; how long a coal charge takes to coke through (the schedule it proposes),
+;; the flushing-liquor pumping duty of the byproduct side, and the robot's
+;; own work of lifting coal-sample buckets at intake.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-1910"
+ :cases
+ [{:id :coal-charge-coking-through
+   :kind :thermal
+   :procedure "coal charge heated from the oven walls (1100 C) until its centre plane reaches 950 C (half the oven width, centre adiabatic)"
+   :params {:thickness-m 0.225 :conductivity-w-mk 0.6 :density-kg-m3 800.0 :specific-heat-j-kgk 1400.0
+            :t0-c 20.0 :t-hot-c 1100.0 :front-fixed? true :h-back-w-m2k 0.0
+            :threshold-c 950.0 :duration-s 144000.0 :nodes 21}
+   :sweep {:param :thickness-m :values [0.18 0.20 0.225 0.25 0.275]}
+   :quantity :time-to-threshold-s
+   :limit {:max 72000.0 :basis "estimate: a 20 h coking cycle, the order of magnitude for slot ovens of about 450 mm width; effective coal-charge properties are lumped constants, not measured"}
+   :boundary {:lo 0.10 :hi 0.35}}
+  {:id :flushing-liquor-to-collecting-main
+   :kind :pipe-flow
+   :procedure "pump flushing (ammonia) liquor at 75 C from the decanter up 15 m to the collecting-main sprays"
+   :params {:diameter-m 0.15 :length-m 150.0 :roughness-m 4.5e-5 :density-kg-m3 975.0
+            :viscosity-pa-s 3.8e-4 :pump-efficiency 0.65 :elevation-m 15.0}
+   :sweep {:param :q-m3s :values [0.01 0.02 0.03 0.04 0.05]}
+   :quantity :pump-power-w
+   :limit {:max 20000.0 :basis "estimate: size of the installed flushing-liquor pump motor assumed for one battery"}
+   :boundary {:lo 0.005 :hi 0.10}}
+  {:id :coal-sample-bucket-lift
+   :kind :manipulator
+   :procedure "arm lifts a coal-sample bucket from the belt sampler discharge onto the lab conveyor for intake verification"
+   :params {:l1-m 0.55 :l2-m 0.45 :m1-kg 6.0 :m2-kg 4.0
+            :from [0.60 0.00] :to [0.25 0.60] :duration-s 2.5 :steps 500}
+   :sweep {:param :payload-kg :values [5.0 10.0 15.0 20.0 25.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 200.0 :basis "estimate: continuous shoulder torque of a ~20 kg-payload industrial arm class"}
+   :boundary {:lo 1.0 :hi 60.0}}]}
